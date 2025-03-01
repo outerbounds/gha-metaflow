@@ -1,0 +1,35 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+      - uses: actions/checkout@v4
+
+      - name: Install Metaflow
+        run: |
+          python -m pip install --upgrade pip
+          pip install metaflow
+
+      - name: Bring up the environment
+        run: |
+          echo "Starting environment in background..."
+          metaflow-dev up &
+          # Give time to spin up. Adjust as needed:
+          sleep 60
+
+      - name: Wait & run flow
+        run: |
+          # When the environment is up, metaflow-dev shell will wait for readiness
+          # and then drop into a shell. We feed commands via a heredoc:
+          cat <<EOF | metaflow-dev shell
+echo "Environment is ready; running flow now..."
+EOF
+
+      - name: Tear down environment
+        run: |
+          metaflow-dev down
