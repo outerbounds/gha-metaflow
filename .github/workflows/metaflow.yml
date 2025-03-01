@@ -27,8 +27,8 @@ jobs:
           # When the environment is up, metaflow-dev shell will wait for readiness
           # and then drop into a shell. We feed commands via a heredoc:
           cat <<EOF | metaflow-dev shell
-echo "Environment is ready; running flow now..."
-EOF
+          echo "Environment is ready; running flow now..."
+          EOF
 
       - name: Tear down environment
         run: |
