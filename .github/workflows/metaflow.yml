@@ -13,13 +13,13 @@ jobs:
       - name: Install Metaflow
         run: |
           python -m pip install --upgrade pip
-          pip install git+https://github.com/netflix/metaflow.git@refs/pull/2315/head
+          pip install git+https://github.com/netflix/metaflow.git@refs/pull/2315/head kubernetes
 
 
       - name: Bring up the environment
         run: |
-          echo "Starting environment in background..."
-          MINIKUBE_CPUS=2 SERVICES_OVERRIDE=all metaflow-dev up &
+          echo "Starting environment in the background..."
+          MINIKUBE_CPUS=2 metaflow-dev all-up &
           # Give time to spin up. Adjust as needed:
           sleep 150
 
