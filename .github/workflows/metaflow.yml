@@ -21,7 +21,7 @@ jobs:
           echo "Starting environment in background..."
           metaflow-dev up &
           # Give time to spin up. Adjust as needed:
-          sleep 60
+          sleep 150
 
       - name: Wait & run flow
         run: |
