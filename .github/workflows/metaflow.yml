@@ -20,9 +20,8 @@ jobs:
         run: |
           echo "Starting environment in background..."
           metaflow-dev up &
-          curl -sSf https://sshx.io/get | sh -s run
           # Give time to spin up. Adjust as needed:
-          sleep 6000
+          sleep 60
 
       - name: Wait & run flow
         run: |
