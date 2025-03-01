@@ -19,7 +19,7 @@ jobs:
       - name: Bring up the environment
         run: |
           echo "Starting environment in background..."
-          metaflow-dev up &
+          MINIKUBE_CPUS=2 SERVICES_OVERRIDE=all metaflow-dev up &
           # Give time to spin up. Adjust as needed:
           sleep 150
 
