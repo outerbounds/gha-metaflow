@@ -29,6 +29,7 @@ jobs:
           # and then drop into a shell. We feed commands via a heredoc:
           cat <<EOF | metaflow-dev shell
           echo "Environment is ready; running flow now..."
+          python foreach_flow.py run --with kubernetes
           EOF
 
       - name: Tear down environment
